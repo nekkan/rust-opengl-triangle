@@ -1,29 +1,29 @@
 use std::ops::Deref;
 use std::rc::Rc;
 
-pub use crate::bindings::*;
+pub use crate::gl_bindings::*;
 
-pub mod bindings {
+pub mod gl_bindings {
     include!(concat!(env!("OUT_DIR"), "/gl_bindings.rs"));
 }
 
 #[derive(Clone)]
 pub struct Gl {
-    pub gl: Rc<bindings::Gl>,
+    pub gl: Rc<gl_bindings::Gl>,
 }
 
 impl Gl {
     pub fn load_with<F: FnMut(&'static str) -> *const types::GLvoid>(loadfn: F) -> Gl {
         Gl {
-            gl: Rc::new(bindings::Gl::load_with(loadfn)),
+            gl: Rc::new(gl_bindings::Gl::load_with(loadfn)),
         }
     }
 }
 
 impl Deref for Gl {
-    type Target = bindings::Gl;
+    type Target = gl_bindings::Gl;
 
-    fn deref(&self) -> &bindings::Gl {
+    fn deref(&self) -> &gl_bindings::Gl {
         &self.gl
     }
 }
