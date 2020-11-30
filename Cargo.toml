@@ -9,3 +9,6 @@ build = "src/build.rs"
 [dependencies]
 glutin = "0.25.1"
 gl = "0.14.0
+
+[build-dependencies]
+gl_generator = "0.14.0"
