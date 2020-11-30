@@ -8,7 +8,10 @@ use gl_generator::{Api, Fallbacks, Profile, Registry, StructGenerator};
 
 fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
-    let mut file_gl = File::create(&Path::new(&out_dir).join("bindings.rs")).unwrap();
+
+    let mut file_gl = File::create(&Path::new(&out_dir)
+        .join("gl_bindings.rs"))
+        .unwrap();
 
     let registry = Registry::new(
         Api::Gl,
