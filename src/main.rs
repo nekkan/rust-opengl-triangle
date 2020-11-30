@@ -26,8 +26,6 @@ fn main() {
     let gl = Gl::load_with(|ptr| gl_context.get_proc_address(ptr) as *const _);
 
     event_loop.run(move |event, _, control_flow| {
-        println!("{:?}", event);
-
         match event {
             Event::WindowEvent { event, .. } => match event {
                 WindowEvent::Resized(size) => gl_context.resize(size),
