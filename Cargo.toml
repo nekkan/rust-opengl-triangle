@@ -8,6 +8,7 @@ edition = "2018"
 [dependencies]
 glutin = "0.25.1"
 gl = "0.14.0"
+bindings = { path = "./bindings" }
 
 [workspace]
 members = ["bindings"]
