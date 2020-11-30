@@ -8,3 +8,4 @@ build = "src/build.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
 glutin = "0.25.1"
+gl = "0.14.0
