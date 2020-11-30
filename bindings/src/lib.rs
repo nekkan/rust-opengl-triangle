@@ -3,7 +3,7 @@ use std::rc::Rc;
 
 pub use crate::bindings::*;
 
-mod bindings {
+pub mod bindings {
     include!(concat!(env!("OUT_DIR"), "/gl_bindings.rs"));
 }
 
