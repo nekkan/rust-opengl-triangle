@@ -3,7 +3,7 @@ use {
     crate::gl_bindings::Gl,
     crate::gl_bindings::types::*,
     std::{
-        ffi::{CStr, CString},
+        ffi::CString,
         ptr, str,
     },
 };
@@ -12,6 +12,7 @@ pub struct Shader {
     pub id: u32
 }
 
+#[allow(dead_code)]
 impl Shader {
     fn new(gl: &Gl, vertex_shader: &str, fragment_shader: &str) -> Shader {
         let vertex_shader = CString::new(vertex_shader.as_bytes()).unwrap();
@@ -41,6 +42,7 @@ impl Shader {
     }
 }
 
+#[allow(dead_code)]
 unsafe fn compile_shader(gl: &Gl, shader_code: &CString, shader_type: GLuint) -> GLuint {
     let shader = gl.CreateShader(shader_type);
     gl.ShaderSource(shader, 1, &shader_code.as_ptr(), ptr::null());
@@ -48,6 +50,7 @@ unsafe fn compile_shader(gl: &Gl, shader_code: &CString, shader_type: GLuint) ->
     return shader;
 }
 
+#[allow(dead_code)]
 unsafe fn check_for_compilation_errors(gl: &Gl, shader: u32, shader_type: &str) {
     let mut success = gl_bindings::FALSE as GLint;
     let mut information = Vec::with_capacity(1024);
