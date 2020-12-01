@@ -3,6 +3,8 @@ use std::rc::Rc;
 
 pub use crate::gl_bindings::*;
 
+pub mod shader;
+
 pub mod gl_bindings {
     include!(concat!(env!("OUT_DIR"), "/gl_bindings.rs"));
 }
