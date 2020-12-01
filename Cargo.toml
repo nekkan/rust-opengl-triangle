@@ -1,5 +1,5 @@
 [package]
-name = "simple-opengl-application"
+name = "simple-opengl-game"
 version = "0.1.0"
 authors = ["nekkan"]
 edition = "2018"
