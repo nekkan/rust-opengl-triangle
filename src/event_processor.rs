@@ -5,17 +5,17 @@ use std::ops::Deref;
 
 use glutin::{
     ContextWrapper,
-    event::{ElementState, Event, KeyboardInput, VirtualKeyCode, WindowEvent},
+    event::{Event, KeyboardInput, WindowEvent},
     event_loop::ControlFlow,
     PossiblyCurrent,
-    window::{Fullscreen, Window},
+    window::Window,
 };
 
 use bindings::{Gl, gl_bindings};
 
 use crate::key_processor;
 
-fn process_event(
+pub fn process_event(
     gl_context: &ContextWrapper<PossiblyCurrent, Window>,
     gl: &Gl,
     event: Event<()>,
