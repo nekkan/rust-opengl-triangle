@@ -19,7 +19,7 @@ mod triangle;
 
 fn main() {
     let window_builder = WindowBuilder::new()
-        .with_title("Simple OpenGL Game")
+        .with_title("Rust OpenGL Triangle")
         .with_inner_size(LogicalSize::new(900.0, 400.0));
 
     let event_loop = EventLoop::new();
