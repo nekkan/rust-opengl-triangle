@@ -1,8 +1,7 @@
 extern crate bindings;
 extern crate glutin;
 
-use std::{io::{stdin, stdout, Write}, ops::Deref};
-use std::borrow::Borrow;
+use std::ops::Deref;
 
 use glutin::{
     ContextBuilder,
@@ -10,7 +9,6 @@ use glutin::{
     dpi::LogicalSize,
     event::{ElementState, Event, KeyboardInput, VirtualKeyCode, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
-    monitor::{MonitorHandle, VideoMode},
     PossiblyCurrent,
     window::{Fullscreen, Window, WindowBuilder},
 };
