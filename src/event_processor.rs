@@ -1,6 +1,7 @@
 extern crate bindings;
 extern crate glutin;
 
+use std::convert::TryInto;
 use std::ops::Deref;
 
 use glutin::{
@@ -25,7 +26,12 @@ pub fn process_event(
 ) {
     match event {
         Event::WindowEvent { event, .. } => match event {
-            WindowEvent::Resized(size) => gl_context.resize(size),
+            WindowEvent::Resized(size) => {
+                gl_context.resize(size);
+                unsafe {
+                    gl.deref().Viewport(0, 0, size.width.try_into().unwrap(), size.height.try_into().unwrap());
+                }
+            },
             WindowEvent::CloseRequested => *control_flow = ControlFlow::Exit,
             WindowEvent::KeyboardInput {
                 input: KeyboardInput {
