@@ -15,7 +15,6 @@ use bindings::{Gl, gl_bindings};
 
 use crate::key_processor;
 
-
 fn process_event(
     gl_context: &ContextWrapper<PossiblyCurrent, Window>,
     gl: &Gl,
