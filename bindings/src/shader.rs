@@ -52,14 +52,20 @@ unsafe fn compile_shader(gl: &Gl, shader_code: &CString, shader_type: GLuint) ->
 
 #[allow(dead_code)]
 unsafe fn check_for_compilation_errors(gl: &Gl, shader: u32, shader_type: &str) {
-    let mut success = gl_bindings::FALSE as GLint;
+    let mut success = gl_bindings::TRUE as GLint;
     let mut information = Vec::with_capacity(1024);
     information.set_len(1024 - 1); // subtract 1 to skip the trailing null character
 
-    let status = if shader_type != "PROGRAM" { gl_bindings::COMPILE_STATUS } else { gl_bindings::LINK_STATUS };
-    gl.GetShaderiv(shader, status, &mut success);
+    if shader_type != "PROGRAM" {
+        gl.GetShaderiv(shader, gl_bindings::COMPILE_STATUS, &mut success);
+    } else {
+        gl.GetShaderiv(shader, gl_bindings::LINK_STATUS, &mut success);
+    };
 
-    gl.GetShaderInfoLog(shader, 1024, ptr::null_mut(), information.as_mut_ptr() as *mut GLchar);
-    println!("Error of type {}:\n{}", shader_type, str::from_utf8(&information).unwrap());
+    if success != gl_bindings::TRUE as GLint {
+        gl.GetShaderInfoLog(shader, 1024, ptr::null_mut(), information.as_mut_ptr() as *mut GLchar);
+        let error = str::from_utf8(&information);
+        println!("Error of type {}:\n{}", shader_type, error.unwrap());
+    }
 }
 
