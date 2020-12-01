@@ -1,1 +1,1 @@
-# simple-opengl-game
+# rust-opengl-triangle

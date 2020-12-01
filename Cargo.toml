@@ -1,5 +1,5 @@
 [package]
-name = "simple-opengl-game"
+name = "rust-opengl-triangle"
 version = "0.1.0"
 authors = ["nekkan"]
 edition = "2018"
