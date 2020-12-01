@@ -8,7 +8,6 @@ edition = "2018"
 [dependencies]
 glutin = "0.25.1"
 gl = "0.14.0"
-phf = { version = "0.8.0", features = ["macros"] }
 bindings = { path = "./bindings" }
 
 [workspace]
