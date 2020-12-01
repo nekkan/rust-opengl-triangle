@@ -31,19 +31,18 @@ fn main() {
     let gl_context = unsafe { gl_context.make_current().unwrap() };
     let gl = Gl::load_with(|ptr| gl_context.get_proc_address(ptr) as *const _);
 
-    create_shaders(gl.deref());
+    let deref_gl = gl.deref();
+    let shader = create_shader(deref_gl);
+    let vao = triangle::get_triangle_vao(deref_gl);
 
     event_loop.run(move |event, _, control_flow| {
-        event_processor::process_event(&gl_context, &gl, event, control_flow);
+        event_processor::process_event(vao, shader.id, &gl_context, &gl, event, control_flow);
     });
 }
 
-fn create_shaders(gl: &gl_bindings::Gl) {
+fn create_shader(gl: &gl_bindings::Gl) -> Shader {
     let vertex_code = include_str!("../shaders/triangle.vert");
     let fragment_code = include_str!("../shaders/triangle.frag");
 
-    unsafe {
-        let shader = Shader::new(gl, vertex_code, fragment_code);
-        gl.UseProgram(shader.id);
-    }
+    Shader::new(gl, vertex_code, fragment_code)
 }
