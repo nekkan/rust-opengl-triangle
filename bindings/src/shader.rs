@@ -14,7 +14,7 @@ pub struct Shader {
 
 #[allow(dead_code)]
 impl Shader {
-    fn new(gl: &Gl, vertex_shader: &str, fragment_shader: &str) -> Shader {
+    pub fn new(gl: &Gl, vertex_shader: &str, fragment_shader: &str) -> Shader {
         let vertex_shader = CString::new(vertex_shader.as_bytes()).unwrap();
         let fragment_shader = CString::new(fragment_shader.as_bytes()).unwrap();
         let mut shader = Shader { id: 0 };
